@@ -6,7 +6,7 @@ const PREFIX = '!';
 
 
 bot.on('ready', () => {
-    console.log('This bot is active!');
+    console.log('Mutie is now active :D');
 })
 
 bot.on('message', message => {
