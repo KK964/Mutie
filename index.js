@@ -13,11 +13,11 @@ bot.on('message', message => {
 
     switch (args[0]) {
         case 'mute':
-            if(mperson.roles.cache.has("717462983231668255")) {return message.reply("This User cannon be Muted")}
-            if(mperson.roles.cache.has("717547940880842753")) {return message.reply("This User cannot be Muted")}
             if(!message.member.hasPermission("MUTE_MEMBERS")) return message.reply("You cannot run this command");
             let mperson = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]));
             if(!mperson) return  message.reply("I cannot find the user " + mperson)
+            if(mperson.roles.cache.has("717462983231668255")) {return message.reply("This User cannon be Muted")}
+            if(mperson.roles.cache.has("717547940880842753")) {return message.reply("This User cannot be Muted")}
 
             const mainrole = message.guild.roles.cache.get('718154458131071106');
             const muterole = message.guild.roles.cache.get('717631710761844757');
