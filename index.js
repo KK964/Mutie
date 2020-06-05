@@ -18,8 +18,8 @@ bot.on('message', message => {
             let mperson = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]));
             if(!mperson) return  message.reply("I cannot find the user " + mperson)
 
-            const mainrole = message.guild.roles.cache.get('718166462862196777');
-            const muterole = message.guild.roles.cache.get('717606607910993930');
+            const mainrole = message.guild.roles.cache.get('718154458131071106');
+            const muterole = message.guild.roles.cache.get('717631710761844757');
            
 
             if(!muterole) return message.reply("Couldn't find the mute role.")
@@ -32,19 +32,19 @@ bot.on('message', message => {
 
             let reason3 = args[3]
 
-            mperson.roles.add("717606607910993930").catch(console.error)
-            mperson.roles.remove("718166462862196777").catch(console.error);
+            mperson.roles.add("717631710761844757").catch(console.error)
+            mperson.roles.remove("718154458131071106").catch(console.error);
 
             message.channel.send(`${mperson.displayName} has now been muted for ${ms(ms(time))} for ${reason3}`)
             mperson.send(`you have been muted for ${reason3} by ${message.member.displayName}`)
-            bot.channels.cache.get(`717607213333741638`).send(`${mperson.displayName} has now been muted for ${ms(ms(time))} for ${reason3} by ${message.member.displayName}`)
+            bot.channels.cache.get(`717807253519990982`).send(`${mperson.displayName} has now been muted for ${ms(ms(time))} for ${reason3} by ${message.member.displayName}`)
             setTimeout(function(){
-                if(mperson.roles.cache.has("717606607910993930")){   
-                mperson.roles.add("718166462862196777"),
-                mperson.roles.remove("717606607910993930"),
+                if(mperson.roles.cache.has("717631710761844757")){   
+                mperson.roles.add("718154458131071106"),
+                mperson.roles.remove("717631710761844757"),
                 console.log(muterole),
                 message.channel.send(`${mperson.displayName} has been unmuted.`)
-                bot.channels.cache.get(`717607213333741638`).send(`${mperson.displayName} has now been unmuted`)
+                bot.channels.cache.get(`717807253519990982`).send(`${mperson.displayName} has now been unmuted`)
                 mperson.send(`You have been unmuted`)}
             }, ms(time));
 
@@ -60,18 +60,18 @@ bot.on('message', message => {
             let mperson = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]));
             if(!mperson) return  message.reply("I cannot find the user " + mperson)
 
-            const mainrole = message.guild.roles.cache.get('718166462862196777');
-            const muterole = message.guild.roles.cache.get('717606607910993930');
+            const mainrole = message.guild.roles.cache.get('718154458131071106');
+            const muterole = message.guild.roles.cache.get('717631710761844757');
            
 
             if(!muterole) return message.reply("Couldn't find the mute role.")
 
-            if(mperson.roles.cache.has("718166462862196777")){return message.reply(`the user ${mperson.displayName} is not muted`)}
-            mperson.roles.remove("717606607910993930").catch(console.error)
-            mperson.roles.add("718166462862196777").catch(console.error);
+            if(mperson.roles.cache.has("718154458131071106")){return message.reply(`the user ${mperson.displayName} is not muted`)}
+            mperson.roles.remove("717631710761844757").catch(console.error)
+            mperson.roles.add("718154458131071106").catch(console.error);
             message.channel.send(`${mperson.displayName} has now been unmuted`)
             mperson.send(`you have been unmuted by ${message.member.displayName}`)
-            bot.channels.cache.get(`717607213333741638`).send(`${mperson.displayName} was unmuted by ${message.member.displayName}`)
+            bot.channels.cache.get(`717807253519990982`).send(`${mperson.displayName} was unmuted by ${message.member.displayName}`)
         break;
     }
 
