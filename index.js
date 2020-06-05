@@ -77,6 +77,23 @@ bot.on('message', message => {
         break;
     }
 
+    switch (args[0]) {
+        case 'warn':
+            if(!message.member.hasPermission("MUTE_MEMBERS")) return message.reply("You cannot run this command");
+            let wperson = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]));
+            if(!wperson) return  message.reply("I cannot find the user " + wperson)
+            if(mperson.roles.cache.has("717462983231668255")) return message.reply("This User cannot be Warned");
+            if(mperson.roles.cache.has("717547940880842753")) return message.reply("This User cannot be Warned");
+            const reason = args.join(" ");
+            message.delete().catch(console.error);
+            message.channel.send(`${wperson.displayName} has now been warned for ${reason}`)
+            wperson.send(`you have been warned by ${message.member.displayName} for ${reason}`).catch(console.error);
+            bot.channels.cache.get(`717807253519990982`).send(`${mperson.displayName} was warned by ${message.member.displayName} for ${reason}`)
+        break;
+    }
+
+
+
 });
 
             
