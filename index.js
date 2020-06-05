@@ -4,8 +4,6 @@ const ms = require('ms');
 
 const PREFIX = '!';
 
-//test
-
 bot.on('ready', () => {
     console.log('Mutie is now active :D');
 })
