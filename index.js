@@ -36,7 +36,7 @@ bot.on('message', message => {
             mperson.roles.remove("718154458131071106").catch(console.error);
 
             message.channel.send(`${mperson.displayName} has now been muted for ${ms(ms(time))} for ${reason3}`)
-            mperson.send(`you have been muted for ${reason3} by ${message.member.displayName}`)
+            mperson.send(`you have been muted for ${reason3} by ${message.member.displayName}`).catch(console.error);
             bot.channels.cache.get(`717807253519990982`).send(`${mperson.displayName} has now been muted for ${ms(ms(time))} for ${reason3} by ${message.member.displayName}`)
             setTimeout(function(){
                 if(mperson.roles.cache.has("717631710761844757")){   
@@ -45,7 +45,7 @@ bot.on('message', message => {
                 console.log(muterole),
                 message.channel.send(`${mperson.displayName} has been unmuted.`)
                 bot.channels.cache.get(`717807253519990982`).send(`${mperson.displayName} has now been unmuted`)
-                mperson.send(`You have been unmuted`)}
+                mperson.send(`You have been unmuted`).catch(console.error);}
             }, ms(time));
 
 
@@ -70,7 +70,7 @@ bot.on('message', message => {
             mperson.roles.remove("717631710761844757").catch(console.error)
             mperson.roles.add("718154458131071106").catch(console.error);
             message.channel.send(`${mperson.displayName} has now been unmuted`)
-            mperson.send(`you have been unmuted by ${message.member.displayName}`)
+            mperson.send(`you have been unmuted by ${message.member.displayName}`).catch(console.error);
             bot.channels.cache.get(`717807253519990982`).send(`${mperson.displayName} was unmuted by ${message.member.displayName}`)
         break;
     }
