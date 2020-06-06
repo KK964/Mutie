@@ -84,8 +84,7 @@ bot.on('message', message => {
             if(!wperson) return  message.reply("I cannot find the user " + wperson)
             if(wperson.roles.cache.has("717462983231668255")) return message.reply("This User cannot be Warned");
             if(wperson.roles.cache.has("717547940880842753")) return message.reply("This User cannot be Warned");
-            const reason = args.join(" ");
-            message.delete().catch(console.error);
+            const reason = args[2];
             message.reply(`${wperson.displayName} has now been warned for ${reason}`)
             wperson.send(`you have been warned by ${message.member.displayName} for ${reason}`).catch(console.error);
             bot.channels.cache.get(`717807253519990982`).send(`${wperson.displayName} was warned by ${message.member.displayName} for ${reason}`)
