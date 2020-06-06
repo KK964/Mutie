@@ -90,6 +90,24 @@ bot.on('message', message => {
             bot.channels.cache.get(`717807253519990982`).send(`***${wperson.displayName}*** was warned by ***${message.member.displayName}*** for ***${reason}***`)
         break;
     }
+    switch (args[0]) {
+        case 'bot_purge' :
+            if(!message.member.hasPermission("MUTE_MEMBERS")) return message.reply("You cannot run this command");
+            if (message.channel.type == 'text') {
+                message.channel.fetchMessages().then(messages => {
+                    const botMessages = messages.filter(msg => msg.author.bot);
+                    message.channel.bulkDelete(botMessages);
+                    messagesDeleted = botMessages.array().length; // number of messages deleted
+            
+                    // Logging the number of messages deleted on both the channel and console.
+                    message.channel.send("Deletion of messages successful. Total messages deleted: " + messagesDeleted);
+                    console.log('Deletion of messages successful. Total messages deleted: ' + messagesDeleted)
+                }).catch(err => {
+                    console.log('Error while doing Bulk Delete');
+                    console.log(err);
+                });
+            }
+    }
 
 });
 
