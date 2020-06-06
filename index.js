@@ -94,7 +94,7 @@ bot.on('message', message => {
         case 'bot_purge' :
             if(!message.member.hasPermission("MUTE_MEMBERS")) return message.reply("You cannot run this command");
             if (message.channel.type == 'text') {
-                const filter = m => m.content.author.bot;
+                const filter = m => m.Client.users.get("718151739374829568")
                 const collector = message.channel.createMessageCollector(filter, { time: 15000 });
                 collector.on(`collect`, m => {
                     message.channel.bulkDelete(m);
