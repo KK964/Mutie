@@ -103,7 +103,7 @@ bot.on('message', message => {
                     // Logging the number of messages deleted on both the channel and console.
                     message.reply("Deletion of messages successful. Total messages deleted: " + messagesDeleted);
                     console.log('Deletion of messages successful. Total messages deleted: ' + messagesDeleted)
-                }).catch(console.error);
+                })
             }
     }
 
