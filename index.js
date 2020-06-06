@@ -94,10 +94,11 @@ bot.on('message', message => {
         case 'bot_purge' :
             if(!message.member.hasPermission("MUTE_MEMBERS")) return message.reply("You cannot run this command");
             if (message.channel.type == 'text') {
-                message.channel.fetch().then(messages => {
-                    const botMessages = messages.filter(msg => msg.author.bot);
-                    message.channel.bulkDelete(botMessages);
-                    messagesDeleted = botMessages.array().length; // number of messages deleted
+                const filer = m => m.content.author.bot;
+                const collector = message.channel.createMessageCollector(filter, { time: 15000 });
+                collector.on(`collect`, m => {
+                    message.channel.bulkDelete(m);
+                    messagesDeleted = m.array().length; // number of messages deleted
             
                     // Logging the number of messages deleted on both the channel and console.
                     message.reply("Deletion of messages successful. Total messages deleted: " + messagesDeleted);
