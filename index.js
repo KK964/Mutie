@@ -86,13 +86,11 @@ bot.on('message', message => {
             if(wperson.roles.cache.has("717547940880842753")) return message.reply("This User cannot be Warned");
             const reason = args.join(" ");
             message.delete().catch(console.error);
-            message.channel.send(`${wperson.displayName} has now been warned for ${reason}`)
+            message.reply(`${wperson.displayName} has now been warned for ${reason}`)
             wperson.send(`you have been warned by ${message.member.displayName} for ${reason}`).catch(console.error);
             bot.channels.cache.get(`717807253519990982`).send(`${wperson.displayName} was warned by ${message.member.displayName} for ${reason}`)
         break;
     }
-
-
 
 });
 
