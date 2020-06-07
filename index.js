@@ -95,8 +95,8 @@ bot.on('message', message => {
         if(message.channel.id === `719078243369615361`) {
             const channelToCheck = bot.channels.cache.get(`719078243369615361`)
             channelToCheck.messages.fetch({ limit: 1}).then(messages => {
-                const sender = messages.sender.displayName;
                 const lastMessage = messages.first()
+                const sender = lastMessages.sender.displayName;
                 console.log(console.error);
                 message.reply(`Your sugestion was sent to the staff.`)
                 bot.channels.cache.get(`719081441799045184`).send(`suggestion: ***${lastMessage}*** was sent by ***${sender}***`);
