@@ -106,7 +106,7 @@ bot.on('message', message => {
 
 });
 
-bot.on(`message`, message => {
+/*bot.on(`message`, message => {
     if(message.channel.id === `719078243369615361`) {
         const channelToCheck = bot.channels.cache.get(`719078243369615361`)
         channelToCheck.messages.fetch({ limit: 1}).then(messagescheck => {
@@ -117,7 +117,7 @@ bot.on(`message`, message => {
             bot.channels.cache.get(`719081441799045184`).send(`suggestion: ***${lastMessage}*** was sent by ***${sender}***`);
         })
     }
-})
+})*/
 
 bot.on("guildMemberAdd", (memberj) => {
     console.log(`Member joined and added to 24h media mute: ${memberj.user.username}`)
