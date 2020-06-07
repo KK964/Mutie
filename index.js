@@ -141,6 +141,7 @@ bot.on("guildMemberAdd", (memberj) => {
 bot.on('message', async message => {
     let msg = message.content.toLocaleLowerCase();
     let sender = message.member.displayName;
+    let senderm =message.member;
     const time = 600000;
     let Admin = message.guild.roles.cache.get("717547940880842753");
     let Mod = message.guild.roles.cache.get("717147286937010176");
@@ -150,17 +151,17 @@ bot.on('message', async message => {
             await message.reply('You cannot say that here!')
             message.delete()
             message.reply(`***${sender}*** was muted for 10min for saying profanities.`)
-            sender.send("You were muted by ***Mutie*** for 10min for saying profanities")
-            sender.roles.add("717631710761844757").catch(console.error)
-            sender.roles.remove("718154458131071106").catch(console.error)
-            sender.roles.remove("719241764879204392").catch(console.error);
+            senderm.send("You were muted by ***Mutie*** for 10min for saying profanities")
+            senderm.roles.add("717631710761844757").catch(console.error)
+            senderm.roles.remove("718154458131071106").catch(console.error)
+            senderm.roles.remove("719241764879204392").catch(console.error);
             bot.channels.cache.get(`717807253519990982`).send(`***${sender}*** was muted for 10min for saying profanities, if this was not their first time, increase mute time.`);
             setTimeout(function() {
-                sender.roles.add("718154458131071106")
-                sender.roles.remove("717631710761844757")
-                sender.roles.add("719241764879204392")
+                senderm.roles.add("718154458131071106")
+                senderm.roles.remove("717631710761844757")
+                senderm.roles.add("719241764879204392")
                 bot.channels.cache.get(`717807253519990982`).send(`***${sender}*** was unmuted`)
-                sender.send(`Your mute is over`);
+                senderm.send(`Your mute is over`);
             }, ms(time))
         }
     }
