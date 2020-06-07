@@ -139,6 +139,7 @@ bot.on("guildMemberAdd", (memberj) => {
     }, ms(time));
 })
 
+//reee
 
 
 
