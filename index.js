@@ -93,7 +93,7 @@ bot.on('message', message => {
 
     bot.on(`message`, message => {
         if(message.channel.id === `719078243369615361`) {
-            const channelToCheck = message.mentions.channels.first()
+            const channelToCheck = message.guild.channels.get(`719078243369615361`)
             channelToCheck.messages.fetch({ limit: 1}).then(messages => {
                 const sender = messages.sender.displayName;
                 const lastMessage = messages.first()
