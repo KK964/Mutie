@@ -6,6 +6,7 @@ const PREFIX = '!';
 
 bot.on('ready', () => {
     console.log('Mutie is now active :D');
+    const guild = bot.guilds.get("717136824962908195");
 })
 
 bot.on('message', message => {
@@ -95,8 +96,9 @@ bot.on('message', message => {
         case 'addrole':
             if(!message.member.hasPermission("MUTE_MEMBERS")) return message.reply("You cannot run this command");
             let mentionedrole = args[1]
-            let roleAdd = message.guild.roles.cache.find(role.name === mentionedrole)
-            message.guild.members.cache.filter(m => !m.user.bot).forEach(member => member.roles.add(roleAdd))
+            let mrole = guild.roles.find("name", mentionedrole)
+            message.guild.members.cache.filter(m => !m.user.bot).forEach(member => member.roles.add(mrole))
+            message.reply(`added ${mrole} to Everyone`)
         break;
     }
 
