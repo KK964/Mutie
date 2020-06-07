@@ -91,7 +91,7 @@ bot.on('message', message => {
         break;
     }
 
-    bot.on(`message`, message => {
+    /* bot.on(`message`, message => {
         if(message.channel.id === `719078243369615361`) {
             const channelToCheck = bot.channels.cache.get(`719078243369615361`)
             channelToCheck.messages.fetch({ limit: 1}).then(messagescheck => {
@@ -102,10 +102,38 @@ bot.on('message', message => {
                 bot.channels.cache.get(`719081441799045184`).send(`suggestion: ***${lastMessage}*** was sent by ***${sender}***`);
             })
         }
-    })
+    })*/
 
 });
 
+bot.on(`message`, message => {
+    if(message.channel.id === `719078243369615361`) {
+        const channelToCheck = bot.channels.cache.get(`719078243369615361`)
+        channelToCheck.messages.fetch({ limit: 1}).then(messagescheck => {
+            const lastMessage = messagescheck.first()
+            const sender = lastMessages.sender.displayName;
+            console.log(console.error);
+            message.reply(`Your sugestion was sent to the staff.`)
+            bot.channels.cache.get(`719081441799045184`).send(`suggestion: ***${lastMessage}*** was sent by ***${sender}***`);
+        })
+    }
+})
+
+bot.on("guildMemberAdd", (memberj) => {
+    console.log(`Member joined and added to 24h media mute: ${memberj.user.username}`)
+    bot.channels.cache.get(`717807253519990982`).send(`***${memberj}*** joined and was media muted for 24hrs`)
+    memberj.send(`Thanks for joining **Virtual Pride Month**, to prevent bad people, you cannot send any media untill an ammount of time that, *we will not tell*, you has passed.`).catch(console.error);
+    const time = 86400000;
+    //719241764879204392
+    memberj.roles.remove("719241764879204392").catch(console.error);
+
+    setTimeout(function() {
+        if(!memberj.roles.cache.has("719241764879204392")) {
+        memberj.roles.add("719241764879204392").catch(console.error)
+        bot.channels.cache.get(`717807253519990982`).send(`***${memberj}*** is no longer media muted`)
+        memberj.send(`Your 24h Media mute is over.`).catch(console.error);}
+    }, ms(time));
+})
             
                         
 bot.login(process.env.token);
