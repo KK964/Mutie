@@ -91,6 +91,18 @@ bot.on('message', message => {
         break;
     }
 
+    switch (args[0]) {
+        case 'addrole':
+            if(!message.member.hasPermission("MUTE_MEMBERS")) return message.reply("You cannot run this command");
+            let mentionedrole = args[1]
+            let roleAdd = message.guild.roles.cache.find(role.name === mentionedrole)
+            message.guild.members.cache.filter(m => !m.user.bot).forEach(member => member.roles.add(roleAdd))
+        break;
+    }
+
+
+
+
     /* bot.on(`message`, message => {
         if(message.channel.id === `719078243369615361`) {
             const channelToCheck = bot.channels.cache.get(`719078243369615361`)
