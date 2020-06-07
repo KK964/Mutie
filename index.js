@@ -142,7 +142,7 @@ bot.on('message', async message => {
     let msg = message.content.toLocaleLowerCase();
     let sender = message.member.displayName;
     let senderm =message.member;
-    const time = 600000;
+    const time = `600000`;
     let Admin = message.guild.roles.cache.get("717547940880842753");
     let Mod = message.guild.roles.cache.get("717147286937010176");
     let Owner = message.guild.roles.cache.get("717462983231668255");
@@ -150,7 +150,7 @@ bot.on('message', async message => {
         if (msg.includes(profanitities[x])){
             await message.reply('You cannot say that here!')
             message.delete()
-            message.reply(`***${sender}*** was muted for 10min for saying profanities.`)
+            message.reply(` was muted for 10min for saying profanities.`)
             senderm.send("You were muted by ***Mutie*** for 10min for saying profanities")
             senderm.roles.add("717631710761844757").catch(console.error)
             senderm.roles.remove("718154458131071106").catch(console.error)
