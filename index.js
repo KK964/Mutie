@@ -6,7 +6,6 @@ const PREFIX = '!';
 
 bot.on('ready', () => {
     console.log('Mutie is now active :D');
-    const guild = bot.guilds.get("717136824962908195");
 })
 
 bot.on('message', message => {
@@ -89,16 +88,6 @@ bot.on('message', message => {
             message.reply(`***${wperson.displayName}*** has now been warned for ***${reason}***`)
             wperson.send(`you have been warned by ***${message.member.displayName}*** for ***${reason}***`).catch(console.error);
             bot.channels.cache.get(`717807253519990982`).send(`***${wperson.displayName}*** was warned by ***${message.member.displayName}*** for ***${reason}***`)
-        break;
-    }
-
-    switch (args[0]) {
-        case 'addrole':
-            if(!message.member.hasPermission("MUTE_MEMBERS")) return message.reply("You cannot run this command");
-            let mentionedrole = args[1]
-            let mrole = guild.roles.find("name", mentionedrole)
-            message.guild.members.cache.filter(m => !m.user.bot).forEach(member => member.roles.add(mrole))
-            message.reply(`added ${mrole} to Everyone`)
         break;
     }
 
