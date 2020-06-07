@@ -90,22 +90,19 @@ bot.on('message', message => {
             bot.channels.cache.get(`717807253519990982`).send(`***${wperson.displayName}*** was warned by ***${message.member.displayName}*** for ***${reason}***`)
         break;
     }
-    switch (args[0]) {
-        case 'bot_purge' :
-            if(!message.member.hasPermission("MUTE_MEMBERS")) return message.reply("You cannot run this command");
-            if (message.channel.type == 'text') {
-                const filter = m => m.Client.users.get("718151739374829568")
-                const collector = message.channel.createMessageCollector(filter, { time: 15000 });
-                collector.on(`collect`, m => {
-                    message.channel.bulkDelete(m);
-                    messagesDeleted = m.array().length; // number of messages deleted
-            
-                    // Logging the number of messages deleted on both the channel and console.
-                    message.reply(`Deletion of messages successful. Total messages deleted: ${messagesDeleted}`)
-                        console.log(`Deletion of messages successful. Total messages deleted: ${messagesDeleted}`)
-                    })
-            }
-    }
+
+    bot.on(`message`, message => {
+        if(message.channel.id === `719078243369615361`) {
+            const channelToCheck = message.mentions.channels.first()
+            channelToCheck.messages.fetch({ limit: 1}).then(messages => {
+                const sender = messages.sender.displayName;
+                const lastMessage = messages.first()
+                console.log(console.error);
+                message.reply(`Your sugestion was sent to the staff.`)
+                bot.channels.cache.get(`719081441799045184`).send(`suggestion: ***${lastMessage}*** was sent by ***${sender}***`);
+            })
+        }
+    })
 
 });
 
