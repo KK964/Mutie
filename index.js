@@ -6,6 +6,7 @@ const PREFIX = '!';
 
 bot.on('ready', () => {
     console.log('Mutie is now active :D');
+    clientUser.setActivity(`Eating the souls of the homophobic`)
 })
 
 bot.on('message', message => {
@@ -138,6 +139,34 @@ bot.on("guildMemberAdd", (memberj) => {
     }, ms(time));
 })
 
+
+
+
+bot.on('message', async message => {
+    let msg = message.content.toLocaleLowerCase();
+    const userID = "536991182035746816";
+    let mreason = args[4]
+    let mperson = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]));
+    let time = args[6]
+    if(mreason === "silenced")
+    if(message.sender === userID) {
+        mperson.roles.add("717631710761844757").catch(console.error)
+        mperson.roles.remove("718154458131071106").catch(console.error)
+        mperson.send('you were muted by Wick for ***${time}***')
+        bot.channels.cache.get(`717807253519990982`).send(`***${mperson.displayName}*** was muted by Wick for ***${time}***`)
+        setTimeout(function() {
+            mperson.roles.remove("717631710761844757").catch(console.error)
+            mperson.roles.add("718154458131071106").catch(console.error)
+            mperson.send('You are no longer muted')
+            bot.channels.cache.get(`717807253519990982`).send(`***${mperson.displayName}*** is no longer muted`)
+        }, ms(time));
+    }
+})
+
+
+
+
+
 bot.on('message', async message => {
     let msg = message.content.toLocaleLowerCase();
     let sender = message.member.displayName;
@@ -168,6 +197,6 @@ bot.on('message', async message => {
 
 
 })
-            
-                        
+
+
 bot.login(process.env.token);
