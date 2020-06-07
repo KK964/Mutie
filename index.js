@@ -126,7 +126,7 @@ bot.on("guildMemberAdd", (memberj) => {
     console.log(`Member joined and added to 24h media mute: ${memberj.user.username}`)
     bot.channels.cache.get(`717807253519990982`).send(`***${memberj}*** joined and was media muted for 24hrs`)
     memberj.send(`Thanks for joining **Virtual Pride Month**, to prevent bad people, you cannot send any media untill an ammount of time that, *we will not tell*, you has passed.`).catch(console.error);
-    const time = 86400000;
+    const time = `86400000`;
     //719241764879204392
     memberj.roles.remove("719241764879204392").catch(console.error);
 
