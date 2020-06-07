@@ -140,7 +140,7 @@ bot.on("guildMemberAdd", (memberj) => {
 
 bot.on('message', async message => {
     let msg = message.content.toLocaleLowerCase();
-    let sender = message.sender.get.username;
+    let sender = message.sender.username;
     const time = 600000;
     let Admin = message.guild.roles.cache.get("717547940880842753");
     let Mod = message.guild.roles.cache.get("717147286937010176");
