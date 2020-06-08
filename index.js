@@ -146,11 +146,11 @@ bot.on("guildMemberAdd", (memberj) => {
 bot.on('message', async message => {
     let msg = message.content.toLocaleLowerCase();
     const userID = "536991182035746816";
-    let mreason = args[4]
-    let mperson = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]));
-    let time = args[6]
-    if(mreason === "silenced")
     if(message.sender === userID) {
+        let mreason = args[4]
+        let mperson = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]));
+        let time = args[6]
+        if(mreason === "silenced")
         mperson.roles.add("717631710761844757").catch(console.error)
         mperson.roles.remove("718154458131071106").catch(console.error)
         mperson.send('you were muted by Wick for ***${time}***')
