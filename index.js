@@ -70,6 +70,9 @@ bot.on('message', message => {
             if(!muterole) return message.reply("Couldn't find the mute role.")
 
             if(mperson.roles.cache.has("718154458131071106")){return message.reply(`the user ***${mperson.displayName}*** is not muted`)}
+            if(message.member.roles.cache.has("717631710761844757")) 
+            mperson.send("yeah, no, not going to let you unmute yourself, you deserve it...")
+            return;
             mperson.roles.remove("717631710761844757").catch(console.error)
             mperson.roles.add("718154458131071106").catch(console.error);
             message.channel.send(`***${mperson.displayName}*** has now been unmuted`)
