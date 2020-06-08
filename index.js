@@ -177,7 +177,7 @@ bot.on('message', async message => {
     let Mod = message.guild.roles.cache.get("717147286937010176");
     let Owner = message.guild.roles.cache.get("717462983231668255");
     let bots = message.guild.roles.cache.get("717600664133566565")
-    if(message.guild.member.roles.has(bots)) return;
+    if(message.member.roles.cache.has("717600664133566565")) return;
     for (x = 0; x < profanitities.length; x++) {
         if (msg.includes(profanitities[x])){
             await message.reply('You cannot say that here!')
