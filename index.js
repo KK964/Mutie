@@ -20,7 +20,7 @@ bot.on('message', message => {
 
             if(mperson.roles.cache.has("717462983231668255")) return message.reply("This User cannot be Muted");
             if(mperson.roles.cache.has("717547940880842753")) return message.reply("This User cannot be Muted");
-
+            if(message.member.roles.cache.has("717631710761844757")) { return mperson.send("you cannot mute while muted");}
             const mainrole = message.guild.roles.cache.get('718154458131071106');
             const muterole = message.guild.roles.cache.get('717631710761844757');
            
@@ -70,9 +70,7 @@ bot.on('message', message => {
             if(!muterole) return message.reply("Couldn't find the mute role.")
 
             if(mperson.roles.cache.has("718154458131071106")){return message.reply(`the user ***${mperson.displayName}*** is not muted`)}
-            if(message.member.roles.cache.has("717631710761844757")) 
-            mperson.send("yeah, no, not going to let you unmute yourself, you deserve it...")
-            return;
+            if(message.member.roles.cache.has("717631710761844757")) { return mperson.send("yeah, no, not going to let you unmute yourself, you deserve it...");}
             mperson.roles.remove("717631710761844757").catch(console.error)
             mperson.roles.add("718154458131071106").catch(console.error);
             message.channel.send(`***${mperson.displayName}*** has now been unmuted`)
