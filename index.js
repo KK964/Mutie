@@ -6,7 +6,7 @@ const PREFIX = '!';
 
 bot.on('ready', () => {
     console.log('Mutie is now active :D');
-    clientUser.setActivity(`Eating the souls of the homophobic`)
+    bot.user.setActivity(`Eating the souls of the homophobic`)
 })
 
 bot.on('message', message => {
