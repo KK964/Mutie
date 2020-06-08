@@ -145,12 +145,12 @@ bot.on("guildMemberAdd", (memberj) => {
 
 bot.on('message', async message => {
     let msg = message.content.toLocaleLowerCase();
+    message.getEmbeds
     const userID = "536991182035746816";
     if(message.sender === userID) {
-        let mreason = args[4]
         let mperson = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]));
         let time = args[6]
-        if(mreason === "silenced")
+        if(message.content.toLocaleLowerCase().includes('silenced'))
         mperson.roles.add("717631710761844757").catch(console.error)
         mperson.roles.remove("718154458131071106").catch(console.error)
         mperson.send('you were muted by Wick for ***${time}***')
@@ -176,6 +176,8 @@ bot.on('message', async message => {
     let Admin = message.guild.roles.cache.get("717547940880842753");
     let Mod = message.guild.roles.cache.get("717147286937010176");
     let Owner = message.guild.roles.cache.get("717462983231668255");
+    let mutie = user.cache.get("718151739374829568");
+    if(senderm.id === mutie) return;
     for (x = 0; x < profanitities.length; x++) {
         if (msg.includes(profanitities[x])){
             await message.reply('You cannot say that here!')
@@ -185,7 +187,7 @@ bot.on('message', async message => {
             senderm.roles.add("717631710761844757").catch(console.error)
             senderm.roles.remove("718154458131071106").catch(console.error)
             senderm.roles.remove("719241764879204392").catch(console.error);
-            bot.channels.cache.get(`717807253519990982`).send(`***${sender}*** was muted for 10min for saying profanities, if this was not their first time, increase mute time.`);
+            bot.channels.cache.get(`717807253519990982`).send(`***${sender}*** was muted for 10min for saying profanities "${msg}", if this was not their first time, increase mute time.`);
             setTimeout(function() {
                 senderm.roles.add("718154458131071106")
                 senderm.roles.remove("717631710761844757")
