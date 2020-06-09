@@ -356,6 +356,13 @@ bot.on('message', async message => {
             userData.level = curLevel;
             message.reply(`You"ve leveled up to level **${curLevel}**! Ain't that shwifty :P`)
         }
+
+        if (message.content.startsWith(PREFIX + "level")) {
+            message.reply(`You are currently level ${userData.level}, with ${userData.points} points.`);
+        }
+        fs.writeFile("./points/points.json", JSON.stringify(points), (err) => {
+            if (err) console.error(err)
+        });
     })
 
 
