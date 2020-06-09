@@ -1,6 +1,11 @@
 require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+
+//fs
+const fs = require('fs');
+let points = JSON.parse(fs.readFileSync("./points/points.json", "utf8"));
+
 //antispam
 const AntiSpam = require('discord-anti-spam');
 const antiSpam = new AntiSpam({
@@ -330,6 +335,34 @@ bot.on('message', async message => {
             }, ms(time))
         }
     }
+
+
+    //points :D
+
+    bot.on("message", message => {
+        if (!message.content(PREFIX)) return;
+        if (message.author.bot) return;
+
+        if (!points[message.author.id]) points[message.author.id] = {
+            points: 0,
+            level: 0
+        };
+        let userData = points[message.author.id];
+        userData.points++;
+        
+        let curLevel = Math.floor(0.1 * Math.sqrt(userData.points));
+        if (curLevel > userData.level) {
+            //lvl up!
+            userData.level = curLevel;
+            message.reply(`You"ve leveled up to level **${curLevel}**! Ain't that shwifty :P`)
+        }
+    })
+
+
+
+
+
+
 
 
 })
