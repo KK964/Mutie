@@ -192,6 +192,7 @@ bot.on('message', message => {
 
     if(usersMap.has(message.author.id)) {
         const userData = usersMap.get(message.author.id)
+        const mtime = '10000'
         let msgCount = userData.msgCount;
         if(parseInt(msgCount) === 5) {
             message.members.roles.add("717631710761844757").catch(console.error)
@@ -209,7 +210,7 @@ bot.on('message', message => {
         usersMap.set(message.author.id, {
             msgCount: 1,
             lastMessage: message,
-            time: 10000
+            time: null
         });
         setTimeout(function() {
             usersMap.delete(message.author.id);
@@ -218,7 +219,7 @@ bot.on('message', message => {
             message.channel.send(`***${message.members.displayName}*** has been unmuted`);
             message.members.send(`you are no longer muted`).catch(console.error);
             bot.channels.cache.get(`717807253519990982`).send(`***${message.members.displayName}*** is no longer muted`);
-        }, ms(time));
+        }, ms(mtime));
     }
 })
 
