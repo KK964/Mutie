@@ -210,6 +210,7 @@ bot.on('message', message => {
         const userData = usersMap.get(message.author.id)
         const mtime = '10000'
         let msg = message.content.toLocaleLowerCase;
+        let lmsg = message.content;
         const { lastMessage, timer } = userData;
         const diffrence = message.createdTimestamp - lastMessage.createdTimestamp;
         let msgCount = userData.msgCount;
@@ -221,7 +222,7 @@ bot.on('message', message => {
             userData.timer = setTimeout(() => {
                 usersMap.delete(message.author.id);
                 console.log('removed from reset');
-            }, 5000);
+            }, 2500);
             usersMap.set(message.author.id, userData);
         }
         
@@ -232,7 +233,7 @@ bot.on('message', message => {
             sender.roles.remove("718154458131071106").catch(console.error);
             message.channel.send(`***${message.member.displayName}*** has now been muted for 1m for ***Spam***`)
             message.member.send(`you have been muted for ***Spam*** by ***Mutie***`).catch(console.error);
-            bot.channels.cache.get(`717807253519990982`).send(`***${message.member.displayName}*** has now been muted for 1m for ***Spam*** by ***Mutie***, their msg was ${msg}`)
+            bot.channels.cache.get(`717807253519990982`).send(`***${message.member.displayName}*** has now been muted for 1m for ***Spam*** by ***Mutie***, their msg was ${lmsg}`)
             message.delete();
         } else {
             userData.msgCount = msgCount;
