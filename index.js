@@ -1,7 +1,7 @@
 require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-
+process.setMaxListeners(0)
 //fs
 const fs = require('fs');
 
@@ -364,7 +364,7 @@ bot.on('message', async message => {
         fs.writeFile("./points/points.json", JSON.stringify(points), (err) => {
             if (err) console.error(err)
         });
-        
+
     })
 
 
