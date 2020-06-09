@@ -194,7 +194,24 @@ bot.on('message', message => {
         const userData = usersMap.get(message.author.id)
         const mtime = '10000'
         let msg = message.content.toLocaleLowerCase;
+        const { lastMessage, timer } = userData;
+        const diffrence = message.createdTimestamp - lastMessage.createdTimestamp;
         let msgCount = userData.msgCount;
+        if(diffrence > 2500) {
+            clearTimeout(timer)
+            console.log('cleared timeout');
+            userData.msgCount =1;
+            userData.lastMessage = message;
+            userData.timer = setTimeout(() => {
+                usersMap.delete(message.author.id);
+                console.log('removed from reset');
+            }, 5000);
+            usersMap.set(message.author.id, userData);
+        }
+        
+        
+        else {
+        ++msgCount;
         if(parseInt(msgCount) === 5) {
             sender.roles.add("717631710761844757").catch(console.error)
             sender.roles.remove("718154458131071106").catch(console.error);
@@ -203,25 +220,26 @@ bot.on('message', message => {
             bot.channels.cache.get(`717807253519990982`).send(`***${message.member.displayName}*** has now been muted for 1m for ***Spam*** by ***Mutie***, their msg was ${msg}`)
             message.delete();
         } else {
-            msgCount++;
             userData.msgCount = msgCount;
             usersMap.set(message.author.id, userData);
+            }
         }
     }
     else {
-        usersMap.set(message.author.id, {
-            msgCount: 1,
-            lastMessage: message,
-            time: null
-        });
-        setTimeout(function() {
+
+        let fn = setTimeout(() => {
             usersMap.delete(message.author.id);
             sender.roles.remove("717631710761844757").catch(console.error);
             sender.roles.add("718154458131071106").catch(console.error);
             message.channel.send(`***${message.member.displayName}*** has been unmuted`);
             message.member.send(`you are no longer muted`).catch(console.error);
             bot.channels.cache.get(`717807253519990982`).send(`***${message.member.displayName}*** is no longer muted`);
-        }, ms('60000'));
+        }, 60000);
+            usersMap.set(message.author.id, {
+            msgCount: 1,
+            lastMessage: message,
+            timer: fn
+        });
     }
 })
 
