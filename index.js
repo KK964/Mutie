@@ -5,7 +5,7 @@ const ms = require('ms');
 var profanitities = ["fag", "faggot", "trannie", "kys", "kill your self", "nigger", "nibba", "nigga", "testtsaedwadadwadwaudawhdawudhaduh"];
 const PREFIX = '!';
 
-const usersMap = new map();
+const usersMap = new Map();
 
 bot.on('ready', () => {
     console.log('Mutie is now active :D');
