@@ -193,7 +193,7 @@ bot.on('message', message => {
     if(usersMap.has(message.author.id)) {
         const userData = usersMap.get(message.author.id)
         const mtime = '10000'
-        let msg = message.get.content;
+        let msg = message.content.toLocaleLowerCase;
         let msgCount = userData.msgCount;
         if(parseInt(msgCount) === 5) {
             sender.roles.add("717631710761844757").catch(console.error)
