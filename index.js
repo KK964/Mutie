@@ -4,6 +4,8 @@ const ms = require('ms');
 var profanitities = ["fag", "faggot", "trannie", "kys", "kill your self", "nigger", "nibba", "nigga", "testtsaedwadadwadwaudawhdawudhaduh"];
 const PREFIX = '!';
 
+const usersMap = new map();
+
 bot.on('ready', () => {
     console.log('Mutie is now active :D');
     bot.user.setActivity(`Eating the souls of the homophobic`)
@@ -179,6 +181,48 @@ bot.on('message', async message => {
     }
 
 })
+
+
+
+
+
+bot.on('message', message => {
+    if(message.author.bot) return;
+
+    if(usersMap.has(message.author.id)) {
+        const userData = usersMap.get(message.author.id)
+        let msgCount = userData.msgCount;
+        if(parseInt(msgCount) === 5) {
+            message.members.roles.add("717631710761844757").catch(console.error)
+            message.members.roles.remove("718154458131071106").catch(console.error);
+            message.channel.send(`***${message.members.displayName}*** has now been muted for 10s for ***Spam***`)
+            message.members.send(`you have been muted for ***Spam*** by ***Mutie***`).catch(console.error);
+            bot.channels.cache.get(`717807253519990982`).send(`***${message.members.displayName}*** has now been muted for 10s for ***Spam*** by ***Mutie***`)
+        } else {
+            msgCount++;
+            userData.msgCount = msgCount;
+            usersMap.set(message.author.id, userData);
+        }
+    }
+    else {
+        usersMap.set(message.author.id, {
+            msgCount: 1,
+            lastMessage: message,
+            time: 10000
+        });
+        setTimeout(function() {
+            usersMap.delete(message.author.id);
+            message.members.roles.remove("717631710761844757").catch(console.error);
+            message.members.roles.add("718154458131071106").catch(console.error);
+            message.channel.send(`***${message.members.displayName}*** has been unmuted`);
+            message.members.send(`you are no longer muted`).catch(console.error);
+            bot.channels.cache.get(`717807253519990982`).send(`***${message.members.displayName}*** is no longer muted`);
+        }, ms(time));
+    }
+})
+
+
+
 
 
 
