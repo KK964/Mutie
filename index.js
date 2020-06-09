@@ -195,8 +195,8 @@ bot.on('message', message => {
         const mtime = '10000'
         let msgCount = userData.msgCount;
         if(parseInt(msgCount) === 5) {
-            message.members.roles.add("717631710761844757").catch(console.error)
-            message.members.roles.remove("718154458131071106").catch(console.error);
+            message.members.cache.roles.add("717631710761844757").catch(console.error)
+            message.members.cache.roles.remove("718154458131071106").catch(console.error);
             message.channel.send(`***${message.members.displayName}*** has now been muted for 10s for ***Spam***`)
             message.members.send(`you have been muted for ***Spam*** by ***Mutie***`).catch(console.error);
             bot.channels.cache.get(`717807253519990982`).send(`***${message.members.displayName}*** has now been muted for 10s for ***Spam*** by ***Mutie***`)
