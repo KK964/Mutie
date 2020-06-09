@@ -1,6 +1,21 @@
 require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+//const keyv = require('keyv');
+/*const keyv = new Keyv('redis://user:pass@localhost:6379');
+
+keyv.on('error', err => console.log('Connection Error', err));
+
+await keyv.set('foo', 'expires in 1 second', 1000); // true
+await keyv.set('foo', 'never expires'); // true
+await keyv.get('foo'); // 'never expires'
+await keyv.delete('foo'); // true
+await keyv.clear(); // undefined
+
+const users = new Keyv('redis://user:pass@localhost:6379', { namespace: 'users' });
+const cache = new Keyv('redis://user:pass@localhost:6379', { namespace: 'cache' });
+*/
+
 const ms = require('ms');
 var profanitities = ["fag", "faggot", "trannie", "kys", "kill your self", "nigger", "nibba", "nigga", "testtsaedwadadwadwaudawhdawudhaduh"];
 const PREFIX = '!';
