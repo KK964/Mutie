@@ -225,8 +225,6 @@ bot.on('message', message => {
             usersMap.set(message.author.id, userData);
         }
         
-        
-
         else {
         ++msgCount;
         if(parseInt(msgCount) === 5) {
@@ -246,6 +244,7 @@ bot.on('message', message => {
 
         let fn = setTimeout(() => {
             usersMap.delete(message.author.id);
+            if(sender.roles.has("717631710761844757"))
             sender.roles.remove("717631710761844757").catch(console.error);
             sender.roles.add("718154458131071106").catch(console.error);
             message.channel.send(`***${message.member.displayName}*** has been unmuted`);
