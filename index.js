@@ -214,8 +214,8 @@ bot.on('message', message => {
         });
         setTimeout(function() {
             usersMap.delete(message.author.id);
-            message.members.roles.remove("717631710761844757").catch(console.error);
-            message.members.roles.add("718154458131071106").catch(console.error);
+            message.members.roles.cache.remove("717631710761844757").catch(console.error);
+            message.members.roles.cache.add("718154458131071106").catch(console.error);
             message.channel.send(`***${message.members.displayName}*** has been unmuted`);
             message.members.send(`you are no longer muted`).catch(console.error);
             bot.channels.cache.get(`717807253519990982`).send(`***${message.members.displayName}*** is no longer muted`);
