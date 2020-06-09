@@ -300,6 +300,7 @@ bot.on('message', message => {
 
 
 
+
 bot.on('message', async message => {
     let msg = message.content.toLocaleLowerCase();
     let sender = message.member.displayName;
