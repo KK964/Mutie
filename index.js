@@ -210,6 +210,7 @@ bot.on('message', message => {
         }
         
         
+        
         else {
         ++msgCount;
         if(parseInt(msgCount) === 5) {
