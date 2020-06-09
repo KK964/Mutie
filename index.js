@@ -21,7 +21,7 @@ const antiSpam = new AntiSpam({
     // And many more options... See the documentation.
 });
 
-client.on('message', (message) => antiSpam.message(message)); 
+bot.on('message', (message) => antiSpam.message(message)); 
 antiSpam.on("warnAdd", (member) => console.log(`${member.user.tag} has been warned.`));
 antiSpam.on("spamThresholdWarn", (member) => console.log(`${member.user.tag} has reached the warn threshold.`));
 antiSpam.on("spamThresholdKick", (member) => console.log(`${member.user.tag} has reached the kick threshold.`));
@@ -31,7 +31,7 @@ antiSpam.on("error", (message, error, type) => {
 	console.log(`${message.author.tag} couldn't receive the sanction '${type}', error: ${error}`);
 });
 antiSpam.on("banAdd", (member) => console.log(`${member.user.tag} has been banned.`));
-client.on('message', (msg) => {
+bot.on('message', (msg) => {
 	antiSpam.message(msg);
 });
 
