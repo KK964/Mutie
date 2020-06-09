@@ -1,7 +1,7 @@
 require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-process.setMaxListeners(0)
+process.setMaxListeners(50);
 //fs
 const fs = require('fs');
 
