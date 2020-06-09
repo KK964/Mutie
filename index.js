@@ -219,7 +219,7 @@ bot.on('message', message => {
             message.channel.send(`***${message.members.displayName}*** has been unmuted`);
             message.members.send(`you are no longer muted`).catch(console.error);
             bot.channels.cache.get(`717807253519990982`).send(`***${message.members.displayName}*** is no longer muted`);
-        }, ms(mtime));
+        }, ms('10000'));
     }
 })
 
