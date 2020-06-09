@@ -4,6 +4,7 @@ const bot = new Discord.Client();
 
 //fs
 const fs = require('fs');
+
 let points = JSON.parse(fs.readFileSync("./points/points.json", "utf8"));
 
 //antispam
