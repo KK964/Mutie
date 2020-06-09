@@ -197,9 +197,9 @@ bot.on('message', message => {
         if(parseInt(msgCount) === 5) {
             sender.roles.add("717631710761844757").catch(console.error)
             sender.roles.remove("718154458131071106").catch(console.error);
-            message.channel.send(`***${message.members.displayName}*** has now been muted for 10s for ***Spam***`)
+            message.channel.send(`***${message.member.displayName}*** has now been muted for 10s for ***Spam***`)
             message.member.send(`you have been muted for ***Spam*** by ***Mutie***`).catch(console.error);
-            bot.channels.cache.get(`717807253519990982`).send(`***${message.members.displayName}*** has now been muted for 10s for ***Spam*** by ***Mutie***`)
+            bot.channels.cache.get(`717807253519990982`).send(`***${message.member.displayName}*** has now been muted for 10s for ***Spam*** by ***Mutie***`)
         } else {
             msgCount++;
             userData.msgCount = msgCount;
@@ -216,9 +216,9 @@ bot.on('message', message => {
             usersMap.delete(message.author.id);
             sender.roles.remove("717631710761844757").catch(console.error);
             sender.roles.add("718154458131071106").catch(console.error);
-            message.channel.send(`***${message.members.displayName}*** has been unmuted`);
-            message.members.send(`you are no longer muted`).catch(console.error);
-            bot.channels.cache.get(`717807253519990982`).send(`***${message.members.displayName}*** is no longer muted`);
+            message.channel.send(`***${message.member.displayName}*** has been unmuted`);
+            message.member.send(`you are no longer muted`).catch(console.error);
+            bot.channels.cache.get(`717807253519990982`).send(`***${message.member.displayName}*** is no longer muted`);
         }, ms('10000'));
     }
 })
