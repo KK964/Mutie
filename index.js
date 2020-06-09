@@ -170,6 +170,7 @@ bot.on('message', async message => {
 
 
 bot.on('message', async message => {
+    if(message.author.bot) return;
     let msg = message.content.toLocaleLowerCase();
     let sender= message.member.displayName;
     let senderm = message.members;
@@ -210,7 +211,7 @@ bot.on('message', message => {
         }
         
         
-        
+
         else {
         ++msgCount;
         if(parseInt(msgCount) === 5) {
