@@ -170,7 +170,7 @@ bot.on('message', async message => {
     let msg = message.content.toLocaleLowerCase();
     let sender= message.member.displayName;
     let senderm = message.members;
-    let KK964 = member.cache.get('426892116258717707')
+    let KK964 = bot.users.cache.get('426892116258717707')
     var kk = ["kk"]
     for (x = 0; x < kk.length; x++) {
         if (msg.includes(kk[x])){
