@@ -364,6 +364,7 @@ bot.on('message', async message => {
         fs.writeFile("./points/points.json", JSON.stringify(points), (err) => {
             if (err) console.error(err)
         });
+        
     })
 
 
