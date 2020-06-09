@@ -340,7 +340,7 @@ bot.on('message', async message => {
 
     //points :D
 
-    client.on("message", message => {
+    bot.on("message", message => {
         if (!message.content.startsWith(PREFIX)) return;
         if (message.author.bot) return;
       
@@ -355,7 +355,7 @@ bot.on('message', async message => {
         if (curLevel > userData.level) {
           // Level up!
           userData.level = curLevel;
-          message.reply(`You"ve leveled up to level **${curLevel}**! Ain"t that dandy?`);
+          message.reply(`You"ve leveled up to level **${curLevel}**! Ain"t that shwifty?`);
         }
       
         if (message.content.startsWith(PREFIX + "level")) {
