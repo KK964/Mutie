@@ -11,6 +11,7 @@
   "dependencies": {
     "@keyv/redis": "^2.1.2",
     "cheerio": "^1.0.0-rc.3",
+    "discord-anti-spam": "^2.4.1",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "keyv": "^4.0.1",

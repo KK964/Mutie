@@ -1,6 +1,41 @@
 require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+//antispam
+const AntiSpam = require('discord-anti-spam');
+const antiSpam = new AntiSpam({
+    warnThreshold: 3, // Amount of messages sent in a row that will cause a warning.
+    kickThreshold: 7, // Amount of messages sent in a row that will cause a ban.
+    banThreshold: 7, // Amount of messages sent in a row that will cause a ban.
+    maxInterval: 2500, // Amount of time (in milliseconds) in which messages are considered spam.
+    warnMessage: '{@user}, Please stop spamming.', // Message that will be sent in chat upon warning a user.
+    kickMessage: '**{user_tag}** has been kicked for spamming.', // Message that will be sent in chat upon kicking a user.
+    banMessage: '**{user_tag}** has been banned for spamming.', // Message that will be sent in chat upon banning a user.
+    maxDuplicatesWarning: 7, // Amount of duplicate messages that trigger a warning.
+    maxDuplicatesKick: 10, // Amount of duplicate messages that trigger a warning.
+    maxDuplicatesBan: 12, // Amount of duplicate messages that trigger a warning.
+    exemptPermissions: [ 'ADMINISTRATOR'], // Bypass users with any of these permissions.
+    ignoreBots: true, // Ignore bot messages.
+    verbose: true, // Extended Logs from module.
+    ignoredUsers: [], // Array of User IDs that get ignored.
+    // And many more options... See the documentation.
+});
+
+client.on('message', (message) => antiSpam.message(message)); 
+antiSpam.on("warnAdd", (member) => console.log(`${member.user.tag} has been warned.`));
+antiSpam.on("spamThresholdWarn", (member) => console.log(`${member.user.tag} has reached the warn threshold.`));
+antiSpam.on("spamThresholdKick", (member) => console.log(`${member.user.tag} has reached the kick threshold.`));
+antiSpam.on("spamThresholdBan", (member) => console.log(`${member.user.tag} has reached the ban threshold.`));
+antiSpam.on("kickAdd", (member) => console.log(`${member.user.tag} has been kicked.`));
+antiSpam.on("error", (message, error, type) => {
+	console.log(`${message.author.tag} couldn't receive the sanction '${type}', error: ${error}`);
+});
+antiSpam.on("banAdd", (member) => console.log(`${member.user.tag} has been banned.`));
+client.on('message', (msg) => {
+	antiSpam.message(msg);
+});
+
+
 //const keyv = require('keyv');
 /*const keyv = new Keyv('redis://user:pass@localhost:6379');
 
@@ -202,7 +237,7 @@ bot.on('message', async message => {
 
 
 
-
+/*
 bot.on('message', message => {
     if(message.author.bot) return;
     let sender = message.member;
@@ -259,7 +294,7 @@ bot.on('message', message => {
         });
     }
 })
-
+*/
 
 
 
