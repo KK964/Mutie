@@ -189,16 +189,16 @@ bot.on('message', async message => {
 
 bot.on('message', message => {
     if(message.author.bot) return;
-
+    let sender = message.member;
     if(usersMap.has(message.author.id)) {
         const userData = usersMap.get(message.author.id)
         const mtime = '10000'
         let msgCount = userData.msgCount;
         if(parseInt(msgCount) === 5) {
-            message.members.cache.roles.add("717631710761844757").catch(console.error)
-            message.members.cache.roles.remove("718154458131071106").catch(console.error);
+            sender.roles.add("717631710761844757").catch(console.error)
+            sender.roles.remove("718154458131071106").catch(console.error);
             message.channel.send(`***${message.members.displayName}*** has now been muted for 10s for ***Spam***`)
-            message.members.send(`you have been muted for ***Spam*** by ***Mutie***`).catch(console.error);
+            message.member.send(`you have been muted for ***Spam*** by ***Mutie***`).catch(console.error);
             bot.channels.cache.get(`717807253519990982`).send(`***${message.members.displayName}*** has now been muted for 10s for ***Spam*** by ***Mutie***`)
         } else {
             msgCount++;
@@ -214,8 +214,8 @@ bot.on('message', message => {
         });
         setTimeout(function() {
             usersMap.delete(message.author.id);
-            message.members.roles.cache.remove("717631710761844757").catch(console.error);
-            message.members.roles.cache.add("718154458131071106").catch(console.error);
+            sender.roles.remove("717631710761844757").catch(console.error);
+            sender.roles.add("718154458131071106").catch(console.error);
             message.channel.send(`***${message.members.displayName}*** has been unmuted`);
             message.members.send(`you are no longer muted`).catch(console.error);
             bot.channels.cache.get(`717807253519990982`).send(`***${message.members.displayName}*** is no longer muted`);
