@@ -360,6 +360,7 @@ bot.on('message', async message => {
       
         if (message.content.startsWith(PREFIX + "level")) {
           message.reply(`You are currently level ${userData.level}, with ${userData.points} points.`);
+          message.delete();
         }
         fs.writeFile("./points/points.json", JSON.stringify(points), (err) => {
           if (err) console.error(err)
