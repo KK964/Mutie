@@ -339,7 +339,7 @@ bot.on('message', async message => {
 
 
     //points :D
-
+/*
     bot.on("message", message => {
         if (!message.content.startsWith(PREFIX)) return;
         if (message.author.bot) return;
@@ -366,6 +366,7 @@ bot.on('message', async message => {
         });
     }
     })
+    */
 
 
 
