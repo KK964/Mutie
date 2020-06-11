@@ -373,7 +373,23 @@ bot.on('message', async message => {
     })
     */
 
-
+   const MusicClient = require("yet-another-discord.js-musicbot-addon");
+   // Put the Music module in the new Client object.
+   // This allows for easy access to all the modules
+   // functions and data.
+   bot.music = new MusicClient(client, {
+     // Set the api key used for YouTube.
+     // This is required to run the bot.
+       apiKey: "YouTubeAPIKeyHere",
+       //all other options are optional
+       defVolume: 50,
+       bitRate: 12000,
+       maxHistory: 50,
+       maxQueue: 100,
+       searchFilters: ['cover', 'live', 'remix', 'mix', 'parody', 'hour', 'extended', 'trailer'],
+       color: 13632027,
+       logger: logger()
+   });
 
 
 
