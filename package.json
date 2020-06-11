@@ -23,7 +23,6 @@
     "ms": "^2.1.2",
     "opusscript": "0.0.7",
     "request": "^2.88.2",
-    "yet-another-discord.js-musicbot-addon": "^2.2.5",
     "ytdl-core": "^2.1.6"
   }
 }
