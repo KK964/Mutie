@@ -7,8 +7,6 @@ const fs = require('fs');
 
 //let points = JSON.parse(fs.readFileSync("./points/points.json", "utf8"));
 //points
-const Enmap = require("enmap");
-bot.points = new Enmap({name: "points"});
 
 
 //antispam
