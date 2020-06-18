@@ -1,6 +1,7 @@
 require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+const quiz = require('./captcha.json');
 process.setMaxListeners(50);
 //fs
 const fs = require('fs');
@@ -11,7 +12,6 @@ const fs = require('fs');
 
 //capthca
 bot.on("guildMemberAdd", (memberj) => {
-const quiz = require('./capthca.json');
 const item = quiz[Math.floor(Math.random() * quiz.length)];
 const cfilter = response => {
 	return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
