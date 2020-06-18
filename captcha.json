@@ -1,0 +1,10 @@
+[
+	{
+		"question": "what is 10-2?",
+		"answers": ["8", "eight"]
+	},
+	{
+		"question": "How many letters are there in the english alphabet?",
+		"answers": ["26", "twenty-six", "twenty six", "twentysix"]
+	}
+]

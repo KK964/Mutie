@@ -9,6 +9,25 @@ const fs = require('fs');
 //points
 
 
+//capthca
+bot.on("guildMemberAdd", (memberj) => {
+const quiz = require('./capthca.json');
+const item = quiz[Math.floor(Math.random() * quiz.length)];
+const cfilter = response => {
+	return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+};
+
+memberj.send(item.question).then(() => {
+	memberj.awaitMessages(cfilter, { max: 1, time: 30000, errors: ['time'] })
+		.then(collected => {
+			memberj.send(`${collected.first().author} got the correct answer!`);
+		})
+		.catch(collected => {
+			memberj.send('Timed out. Please msg a Staff');
+		});
+});
+});
+
 //antispam
 const AntiSpam = require('discord-anti-spam');
 const antiSpam = new AntiSpam({
@@ -239,7 +258,6 @@ bot.on('message', async message => {
             KK964.send(`${sender} says ${msg}.`)
         }
     }
-
 })
 
 
