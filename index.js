@@ -2,7 +2,6 @@ require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const createCaptcha = require('./captcha');
-process.setMaxListeners(50);
 //fs
 const fs = require('fs');
 
@@ -32,7 +31,6 @@ bot.on('guildMemberAdd', async member => {
                 await member.roles.remove('717807186431967413');
                 await fs.unlink(`${__dirname}/captchas/${captcha}.png`)
                     .catch(err => console.log(err));
-                    return true;
             }
         }
         catch(err) {
