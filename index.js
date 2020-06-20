@@ -200,14 +200,14 @@ bot.on("guildMemberAdd", (memberj) => {
 
 bot.on('message', async message => {
 //kk summon
-    if(msg.author == null){return};
-    if(msg.webhookID){return};
     if(message.author.bot) return;
     let msg = message.content.toLocaleLowerCase();
     let sender = message.member.displayName;
     let senderm = message.members;
     let KK964 = bot.users.cache.get('426892116258717707')
     var kk = ["kk"]
+    if(msg.author == null){return};
+    if(msg.webhookID){return};
     for (x = 0; x < kk.length; x++) {
         if (msg.includes(kk[x])){
             KK964.send(`${sender} says ${msg}.`)
