@@ -32,7 +32,7 @@ bot.on('guildMemberAdd', async member => {
                 await member.roles.remove('717807186431967413');
                 await fs.unlink(`${__dirname}/captchas/${captcha}.png`)
                     .catch(err => console.log(err));
-                    return false;
+                    return true;
             }
         }
         catch(err) {
