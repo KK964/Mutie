@@ -37,12 +37,12 @@ bot.on('guildMemberAdd', async member => {
         catch(err) {
             console.log(err);
             await msg.channel.send('You did not solve the captcha correctly on time.');
-            await member.kick();
             await fs.unlink(`${__dirname}/captchas/${captcha}.png`)
                     .catch(err => console.log(err));
         }
     }
     catch(err) {
+        bot.channels.cache.get(`717807253519990982`).send(`**${member.displayName}** does not have DMs on.`)
         console.log(err);
     }
 });
@@ -207,7 +207,7 @@ bot.on('message', async message => {
     var kk = ["kk"]
     if(message.author == null){return};
     if(message.webhookID){return};
-    let sender = message.member.displayName;
+    let sender = message.member;
     for (x = 0; x < kk.length; x++) {
         if (msg.includes(kk[x])){
             KK964.send(`${sender} says ${msg}.`)
