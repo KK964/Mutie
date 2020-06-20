@@ -214,11 +214,11 @@ bot.on('message', async message => {
         }
     }
     const time = `600000`;
-    if(message.member.roles.cache.has("717600664133566565")) {return};
+    if(message.author.bot) {return};
 
 
 //profanity filters
-    if(message.member.roles.cache.has("717600664133566565")) return;
+    if(message.author.bot) {return};
     for (x = 0; x < profanitities.length; x++) {
         if (msg.includes(profanitities[x])){
             await message.reply('You cannot say that here!')
