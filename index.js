@@ -6,26 +6,23 @@ process.setMaxListeners(50);
 //fs
 const fs = require('fs');
 
-//let points = JSON.parse(fs.readFileSync("./points/points.json", "utf8"));
-//points
-
-
 //capthca
 bot.on("guildMemberAdd", (memberj) => {
 const item = quiz[Math.floor(Math.random() * quiz.length)];
 const cfilter = response => {
 	return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
 };
-
-memberj.send(item.question).then(() => {
-	memberj.awaitMessages(cfilter, { max: 1, time: 30000, errors: ['time'] })
-		.then(collected => {
+    const collector = memberj.channel;
+    memberj.send(item.question).then(() => {
+	    collector.awaitMessages(cfilter, { max: 1, time: 30000, errors: ['time'] })
+		    .then(collected => {
 			memberj.send(`${collected.first().author} got the correct answer!`);
-		})
-		.catch(collected => {
-			memberj.send('Timed out. Please msg a Staff');
-		});
-});
+		    })
+		    .catch(collected => {
+			    memberj.send('Timed out. Please msg a Staff');
+		    });
+    });
+    
 });
 
 //antispam
@@ -61,22 +58,6 @@ antiSpam.on("banAdd", (member) => console.log(`${member.user.tag} has been banne
 bot.on('message', (msg) => {
 	antiSpam.message(msg);
 });
-
-
-//const keyv = require('keyv');
-/*const keyv = new Keyv('redis://user:pass@localhost:6379');
-
-keyv.on('error', err => console.log('Connection Error', err));
-
-await keyv.set('foo', 'expires in 1 second', 1000); // true
-await keyv.set('foo', 'never expires'); // true
-await keyv.get('foo'); // 'never expires'
-await keyv.delete('foo'); // true
-await keyv.clear(); // undefined
-
-const users = new Keyv('redis://user:pass@localhost:6379', { namespace: 'users' });
-const cache = new Keyv('redis://user:pass@localhost:6379', { namespace: 'cache' });
-*/
 
 const ms = require('ms');
 var profanitities = ["fag", "faggot", "trannie", "kys", "kill your self", "nigger", "nibba", "nigga", "testtsaedwadadwadwaudawhdawudhaduh"];
@@ -173,36 +154,7 @@ bot.on('message', message => {
         break;
     }
 
-
-
-
-    /* bot.on(`message`, message => {
-        if(message.channel.id === `719078243369615361`) {
-            const channelToCheck = bot.channels.cache.get(`719078243369615361`)
-            channelToCheck.messages.fetch({ limit: 1}).then(messagescheck => {
-                const lastMessage = messagescheck.first()
-                const sender = lastMessages.sender.displayName;
-                console.log(console.error);
-                message.reply(`Your sugestion was sent to the staff.`)
-                bot.channels.cache.get(`719081441799045184`).send(`suggestion: ***${lastMessage}*** was sent by ***${sender}***`);
-            })
-        }
-    })*/
-
 });
-
-/*bot.on(`message`, message => {
-    if(message.channel.id === `719078243369615361`) {
-        const channelToCheck = bot.channels.cache.get(`719078243369615361`)
-        channelToCheck.messages.fetch({ limit: 1}).then(messagescheck => {
-            const lastMessage = messagescheck.first()
-            const sender = lastMessages.sender.displayName;
-            console.log(console.error);
-            message.reply(`Your sugestion was sent to the staff.`)
-            bot.channels.cache.get(`719081441799045184`).send(`suggestion: ***${lastMessage}*** was sent by ***${sender}***`);
-        })
-    }
-})*/
 
 bot.on("guildMemberAdd", (memberj) => {
     console.log(`Member joined and added to 24h media mute: ${memberj.user.username}`)
@@ -225,28 +177,7 @@ bot.on("guildMemberAdd", (memberj) => {
 
 
 bot.on('message', async message => {
-    let msg = message.content.toLocaleLowerCase();
-    message.getEmbeds
-    const userID = "536991182035746816";
-    if(message.sender === userID) {
-        let mperson = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]));
-        let time = args[6]
-        if(message.content.toLocaleLowerCase().includes('silenced'))
-        mperson.roles.add("717631710761844757").catch(console.error)
-        mperson.roles.remove("718154458131071106").catch(console.error)
-        mperson.send('you were muted by Wick for ***${time}***')
-        bot.channels.cache.get(`717807253519990982`).send(`***${mperson.displayName}*** was muted by Wick for ***${time}***`)
-        setTimeout(function() {
-            mperson.roles.remove("717631710761844757").catch(console.error)
-            mperson.roles.add("718154458131071106").catch(console.error)
-            mperson.send('You are no longer muted')
-            bot.channels.cache.get(`717807253519990982`).send(`***${mperson.displayName}*** is no longer muted`)
-        }, ms(time));
-    }
-})
-
-
-bot.on('message', async message => {
+//kk summon
     if(message.author.bot) return;
     let msg = message.content.toLocaleLowerCase();
     let sender= message.member.displayName;
@@ -258,76 +189,18 @@ bot.on('message', async message => {
             KK964.send(`${sender} says ${msg}.`)
         }
     }
-})
+    let msg = message.content.toLocaleLowerCase();
+    let sender = message.member.displayName;
+    let senderm =message.member;
+    const time = `600000`;
+    let Admin = message.guild.roles.cache.get("717547940880842753");
+    let Mod = message.guild.roles.cache.get("717147286937010176");
+    let Owner = message.guild.roles.cache.get("717462983231668255");
+    let bots = message.guild.roles.cache.get("717600664133566565")
+    if(message.member.roles.cache.has("717600664133566565")) {return};
 
 
-
-
-/*
-bot.on('message', message => {
-    if(message.author.bot) return;
-    let sender = message.member;
-    if(usersMap.has(message.author.id)) {
-        const userData = usersMap.get(message.author.id)
-        const mtime = '10000'
-        let msg = message.content.toLocaleLowerCase;
-        let lmsg = message.content;
-        const { lastMessage, timer } = userData;
-        const diffrence = message.createdTimestamp - lastMessage.createdTimestamp;
-        let msgCount = userData.msgCount;
-        if(diffrence > 2500) {
-            clearTimeout(timer)
-            console.log('cleared timeout');
-            userData.msgCount =1;
-            userData.lastMessage = message;
-            userData.timer = setTimeout(() => {
-                usersMap.delete(message.author.id);
-                console.log('removed from reset');
-            }, 2500);
-            usersMap.set(message.author.id, userData);
-        }
-        
-        else {
-        ++msgCount;
-        if(parseInt(msgCount) === 5) {
-            sender.roles.add("717631710761844757").catch(console.error)
-            sender.roles.remove("718154458131071106").catch(console.error);
-            message.channel.send(`***${message.member.displayName}*** has now been muted for 1m for ***Spam***`)
-            message.member.send(`you have been muted for ***Spam*** by ***Mutie***`).catch(console.error);
-            bot.channels.cache.get(`717807253519990982`).send(`***${message.member.displayName}*** has now been muted for 1m for ***Spam*** by ***Mutie***, their msg was ${lmsg}`)
-            message.delete();
-        } else {
-            userData.msgCount = msgCount;
-            usersMap.set(message.author.id, userData);
-            }
-        }
-    }
-    else {
-
-        let fn = setTimeout(() => {
-            usersMap.delete(message.author.id);
-            if(sender.roles.cache.has("717631710761844757"))
-            sender.roles.remove("717631710761844757").catch(console.error);
-            sender.roles.add("718154458131071106").catch(console.error);
-            message.channel.send(`***${message.member.displayName}*** has been unmuted`);
-            message.member.send(`you are no longer muted`).catch(console.error);
-            bot.channels.cache.get(`717807253519990982`).send(`***${message.member.displayName}*** is no longer muted`);
-        }, 60000);
-            usersMap.set(message.author.id, {
-            msgCount: 1,
-            lastMessage: message,
-            timer: fn
-        });
-    }
-})
-*/
-
-
-
-
-
-
-bot.on('message', async message => {
+//profanity filter
     let msg = message.content.toLocaleLowerCase();
     let sender = message.member.displayName;
     let senderm =message.member;
@@ -356,46 +229,6 @@ bot.on('message', async message => {
             }, ms(time))
         }
     }
-
-
-    //points :D
-
-/*
-    bot.on("message", message => {
-        if (!message.content.startsWith(PREFIX)) return;
-        if (message.author.bot) return;
-      
-        if (!points[message.author.id]) points[message.author.id] = {
-          points: 0,
-          level: 0
-        };
-        let userData = points[message.author.id];
-        userData.points++;
-      
-        let curLevel = Math.floor(0.1 * Math.sqrt(userData.points));
-        if (curLevel > userData.level) {
-          // Level up!
-          userData.level = curLevel;
-          message.reply(`You"ve leveled up to level **${curLevel}**! Ain"t that shwifty?`);
-        }
-      
-        if (message.content.startsWith(PREFIX + "level")) {
-          message.reply(`You are currently level ${userData.level}, with ${userData.points} points.`);
-          fs.writeFile("./points/points.json", JSON.stringify(points), (err) => {
-            if (err) console.error(err)
-            return;
-        });
-    }
-    })
-    */
-
-
-
-
-
-
-
 })
-
 
 bot.login(process.env.token);
