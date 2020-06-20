@@ -198,7 +198,6 @@ bot.on('message', async message => {
 
 
 //profanity filters
-    const time = `600000`;
     let Admin = message.guild.roles.cache.get("717547940880842753");
     let Mod = message.guild.roles.cache.get("717147286937010176");
     let Owner = message.guild.roles.cache.get("717462983231668255");
