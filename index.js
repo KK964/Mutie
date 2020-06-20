@@ -1,28 +1,50 @@
 require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const quiz = require('./captcha.json');
+const createCaptcha = require('./captcha');
 process.setMaxListeners(50);
 //fs
 const fs = require('fs');
 
 //capthca
-bot.on("guildMemberAdd", (memberj) => {
-const item = quiz[Math.floor(Math.random() * quiz.length)];
-const cfilter = response => {
-	return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
-};
-    const collector = memberj.channel;
-    memberj.send(item.question).then(() => {
-	    collector.awaitMessages(cfilter, { max: 1, time: 30000, errors: ['time'] })
-		    .then(collected => {
-			memberj.send(`${collected.first().author} got the correct answer!`);
-		    })
-		    .catch(collected => {
-			    memberj.send('Timed out. Please msg a Staff');
-		    });
-    });
-    
+bot.on('guildMemberAdd', async member => {
+    await member.roles.add('717807186431967413');
+    const captcha = await createCaptcha();
+    try {
+        const msg = await member.send('You have 60 seconds to solve the captcha', {
+            files: [{
+                attachment: `${__dirname}/captchas/${captcha}.png`,
+                name: `${captcha}.png`
+            }]
+        });
+        try {
+            const filter = m => {
+                if(m.author.bot) return;
+                if(m.author.id === member.id && m.content === captcha) return true;
+                else {
+                    m.channel.send('You entered the captcha incorrectly.');
+                    return false;
+                }
+            };
+            const response = await msg.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time']});
+            if(response) {
+                await msg.channel.send('You have verified yourself!');
+                await member.roles.remove('717807186431967413');
+                await fs.unlink(`${__dirname}/captchas/${captcha}.png`)
+                    .catch(err => console.log(err));
+            }
+        }
+        catch(err) {
+            console.log(err);
+            await msg.channel.send('You did not solve the captcha correctly on time.');
+            await member.kick();
+            await fs.unlink(`${__dirname}/captchas/${captcha}.png`)
+                    .catch(err => console.log(err));
+        }
+    }
+    catch(err) {
+        console.log(err);
+    }
 });
 
 //antispam
