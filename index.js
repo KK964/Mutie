@@ -9,6 +9,7 @@ const fs = require('fs');
 bot.on('guildMemberAdd', async member => {
     await member.roles.add('717807186431967413');
     const captcha = await createCaptcha();
+    if(member == null){return};
     try {
         const msg = await member.send('You have 60 seconds to solve the captcha', {
             files: [{
@@ -199,9 +200,11 @@ bot.on("guildMemberAdd", (memberj) => {
 
 bot.on('message', async message => {
 //kk summon
+    if(msg.author == null){return};
+    if(msg.webhookID){return};
     if(message.author.bot) return;
     let msg = message.content.toLocaleLowerCase();
-    let sender= message.member.displayName;
+    let sender = message.member.displayName;
     let senderm = message.members;
     let KK964 = bot.users.cache.get('426892116258717707')
     var kk = ["kk"]
