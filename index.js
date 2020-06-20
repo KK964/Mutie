@@ -189,9 +189,6 @@ bot.on('message', async message => {
             KK964.send(`${sender} says ${msg}.`)
         }
     }
-    let msg = message.content.toLocaleLowerCase();
-    let sender = message.member.displayName;
-    let senderm =message.member;
     const time = `600000`;
     let Admin = message.guild.roles.cache.get("717547940880842753");
     let Mod = message.guild.roles.cache.get("717147286937010176");
@@ -200,10 +197,7 @@ bot.on('message', async message => {
     if(message.member.roles.cache.has("717600664133566565")) {return};
 
 
-//profanity filter
-    let msg = message.content.toLocaleLowerCase();
-    let sender = message.member.displayName;
-    let senderm =message.member;
+//profanity filters
     const time = `600000`;
     let Admin = message.guild.roles.cache.get("717547940880842753");
     let Mod = message.guild.roles.cache.get("717147286937010176");
