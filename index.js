@@ -22,7 +22,7 @@ bot.on('guildMemberAdd', async member => {
                 if(m.author.bot) return;
                 if(m.author.id === member.id && m.content === captcha) return true;
                 else {
-                    m.channel.send('You entered the captcha incorrectly.');
+                    m.channel.send('You entered the captcha incorrectly, please retry.');
                     return false;
                 }
             };
@@ -35,7 +35,7 @@ bot.on('guildMemberAdd', async member => {
         }
         catch(err) {
             console.log(err);
-            await msg.channel.send('You did not solve the captcha correctly on time.');
+            await msg.channel.send('You did not solve the captcha correctly on time. Please type "!verify" in #get-out-of-quarantine.');
             await fs.unlink(`${__dirname}/captchas/${captcha}.png`, (err) => {
                 if (err) throw err;
             })
@@ -43,11 +43,10 @@ bot.on('guildMemberAdd', async member => {
         }
     }
     catch(err) {
-        bot.channels.cache.get(`717807253519990982`).send(`**${member.displayName}** does not have DMs on.`)
+        bot.channels.cache.get(`717807253519990982`).send(`**${member.displayName}** does not have DMs on, or time limit was passed.`)
         console.log(err);
     }
 });
-
 //antispam
 const AntiSpam = require('discord-anti-spam');
 const antiSpam = new AntiSpam({
@@ -97,6 +96,49 @@ bot.on('message', message => {
     let args = message.content.substring(PREFIX.length).split(" ");
 
     switch (args[0]) {
+
+        //verify
+        case 'verify':
+            const vm = message.member;
+            try {
+                const msg = await vm.send('You have 60 seconds to solve the captcha', {
+                    files: [{
+                        attachment: `${__dirname}/captchas/${captcha}.png`,
+                        name: `${captcha}.png`
+                    }]
+                });
+                try {
+                    const filter = m => {
+                        if(m.author.bot) return;
+                        if(m.author.id === vm.id && m.content === captcha) return true;
+                        else {
+                            m.channel.send('You entered the captcha incorrectly, please retry.');
+                            return false;
+                        }
+                    };
+                    const response = await msg.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time']});
+                    if(response) {
+                        await msg.channel.send('You have verified yourself!');
+                        await vm.roles.remove('717807186431967413');
+        
+                    }
+                }
+                catch(err) {
+                    console.log(err);
+                    await msg.channel.send('You did not solve the captcha correctly on time. Please type "!verify" in #get-out-of-quarantine.');
+                    await fs.unlink(`${__dirname}/captchas/${captcha}.png`, (err) => {
+                        if (err) throw err;
+                    })
+                            .catch(err => console.log(err));
+                }
+            }
+            catch(err) {
+                bot.channels.cache.get(`717807253519990982`).send(`**${vm.displayName}** does not have DMs on, or time limit was passed.`)
+                console.log(err);
+            }
+        break};
+
+        switch (args[0]) {
         case 'mute':
             if(!message.member.hasPermission("MUTE_MEMBERS")) return message.reply("You cannot run this command");
             let mperson = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]));
