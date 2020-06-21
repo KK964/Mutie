@@ -30,14 +30,18 @@ bot.on('guildMemberAdd', async member => {
             if(response) {
                 await msg.channel.send('You have verified yourself!');
                 await member.roles.remove('717807186431967413');
-                await fs.unlink(`${__dirname}/captchas/${captcha}.png`, (err))
+                await fs.unlink(`${__dirname}/captchas/${captcha}.png`, (err) => {
+                    if (err) throw err;
+                })
                     .catch(err => console.log(err));
             }
         }
         catch(err) {
             console.log(err);
             await msg.channel.send('You did not solve the captcha correctly on time.');
-            await fs.unlink(`${__dirname}/captchas/${captcha}.png`, (err))
+            await fs.unlink(`${__dirname}/captchas/${captcha}.png`, (err) => {
+                if (err) throw err;
+            })
                     .catch(err => console.log(err));
         }
     }
