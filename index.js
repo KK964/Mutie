@@ -114,9 +114,8 @@ bot.on('message', async message => {
         case 'verify':
             const vm = message.member;
             const captchaFailEmbed = new Discord.MessageEmbed()
-.setThumbnail(message.author.avatar)
-.setTitle(`Captcha Failed`)
-.setDescription(`**${message.author.displayName}** has failed captcha`);
+            .setColor(`#A62019`)
+            .setDescription(`**${vm.displayName}** has failed captcha`);
             const captcha = await createCaptcha();
             if(vm == null){return};
             if(message.channel.id !== '717865343858770002') {
