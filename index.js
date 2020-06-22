@@ -154,11 +154,12 @@ bot.on('message', message => {
 
     switch (args[0]) {
         case 'giveallrole':
+            const list = bot.guilds.get("717136824962908195");
             if(message.member.hasPermission("MANAGE_ROLES")) {message.react('❌')};
             let mrole = args[1];
             let role = message.guild.roles.cache.find(role => role.name === mrole);
             if(!role) {message.reply(`could not find role ${mrole}`)};
-            message.guild.cache.members.filter(m => !m.user.bot).forEach(member => member.roles.add(role));
+            list.cache.members.filter(m => !m.user.bot).forEach(member => member.roles.add(role));
             message.reply(`${mrole}, was added to everyone`);
 
             break;
