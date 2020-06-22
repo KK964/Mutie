@@ -93,6 +93,9 @@ bot.on('ready', () => {
 })
 
 bot.on('message', async message => {
+
+    let args = message.content.substring(PREFIX.length).split(" ");
+    
     switch (args[0]) {
 
         //verify
