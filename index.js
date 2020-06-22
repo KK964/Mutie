@@ -10,9 +10,9 @@ const fs = require('fs');
 
 //capthca
 bot.on('guildMemberAdd', async member => {
-    await member.roles.add('#A62019');
+    await member.roles.add('717807186431967413');
     const captchaJFailedEmbed = new Discord.MessageEmbed()
-.setColor(`10038562`)
+.setColor(`#A62019`)
 .setDescription(`**${member.displayName}** has failed captcha`);
     const captcha = await createCaptcha();
     if(member == null){return};
