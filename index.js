@@ -92,14 +92,14 @@ bot.on('ready', () => {
     bot.user.setActivity(`Eating the souls of the homophobic`)
 })
 
-bot.on('message', message => {
-    let args = message.content.substring(PREFIX.length).split(" ");
-
+bot.on('message', async message => {
     switch (args[0]) {
 
         //verify
         case 'verify':
             const vm = message.member;
+            if(!message.channel.id == '717865343858770002') {message.react('❌')};
+            message.react('✅')
             try {
                 const msg = await vm.send('You have 60 seconds to solve the captcha', {
                     files: [{
@@ -137,6 +137,11 @@ bot.on('message', message => {
                 console.log(err);
             }
         break};
+})
+
+
+bot.on('message', message => {
+    let args = message.content.substring(PREFIX.length).split(" ");
 
         switch (args[0]) {
         case 'mute':
