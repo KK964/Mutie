@@ -12,8 +12,7 @@ const fs = require('fs');
 bot.on('guildMemberAdd', async member => {
     await member.roles.add('717807186431967413');
     const captchaJFailedEmbed = new Discord.MessageEmbed()
-.setAuthor(member.avatar)
-.setTitle(`Captcha Failed`)
+.setColor(`10038562`)
 .setDescription(`**${member.displayName}** has failed captcha`);
     const captcha = await createCaptcha();
     if(member == null){return};
