@@ -101,7 +101,9 @@ bot.on('message', async message => {
         //verify
         case 'verify':
             const vm = message.member;
-            if(!message.channel.id == '717865343858770002') {
+            const captcha = await createCaptcha();
+            if(vm == null){return};
+            if(message.channel.id !== '717865343858770002') {
                 message.react('❌')
                 return;
             };
