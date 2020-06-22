@@ -5,6 +5,20 @@ const createCaptcha = require('./captcha');
 //fs
 const fs = require('fs');
 
+//embeds
+///captcha failed verify
+const captchaFailEmbed = new Discord.MessageEmbed()
+.setThumbnail(message.author.avatar)
+.setTitle(`Captcha Failed`)
+.setDescription(`**${message.author.displayName}** has failed captcha`);
+
+///captcha join captcha failed
+const captchaJFailedEmbed = new Discord.MessageEmbed()
+.setThumbnail(member.avatar)
+.setTitle(`Captcha Failed`)
+.setDescription(`**${member.displayName}** has failed captcha`);
+
+
 //capthca
 bot.on('guildMemberAdd', async member => {
     await member.roles.add('717807186431967413');
@@ -43,7 +57,7 @@ bot.on('guildMemberAdd', async member => {
         }
     }
     catch(err) {
-        bot.channels.cache.get(`717807253519990982`).send(`**${member.displayName}** does not have DMs on, or time limit was passed.`)
+        bot.channels.cache.get(`717807253519990982`).send(captchaJFailedEmbed)
         console.log(err);
     }
 });
@@ -91,6 +105,12 @@ bot.on('ready', () => {
     console.log('Mutie is now active :D');
     bot.user.setActivity(`Eating the souls of the homophobic`)
 })
+
+
+
+
+
+
 
 bot.on('message', async message => {
 
@@ -142,7 +162,7 @@ bot.on('message', async message => {
                 }
             }
             catch(err) {
-                bot.channels.cache.get(`717807253519990982`).send(`**${vm.displayName}** does not have DMs on, or time limit was passed.`)
+                bot.channels.cache.get(`717807253519990982`).send(captchaFailEmbed)
                 console.log(err);
             }
         break};
