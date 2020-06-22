@@ -95,15 +95,18 @@ bot.on('ready', () => {
 bot.on('message', async message => {
 
     let args = message.content.substring(PREFIX.length).split(" ");
-    
+
     switch (args[0]) {
 
         //verify
         case 'verify':
             const vm = message.member;
-            if(!message.channel.id == '717865343858770002') {message.react('❌')};
-            message.react('✅')
+            if(!message.channel.id == '717865343858770002') {
+                message.react('❌')
+                return;
+            };
             try {
+                message.react('✅')
                 const msg = await vm.send('You have 60 seconds to solve the captcha', {
                     files: [{
                         attachment: `${__dirname}/captchas/${captcha}.png`,
