@@ -12,7 +12,7 @@ const fs = require('fs');
 bot.on('guildMemberAdd', async member => {
     await member.roles.add('717807186431967413');
     const captchaJFailedEmbed = new Discord.MessageEmbed()
-.setThumbnail(member.avatar)
+.setAuthor(member.avatar)
 .setTitle(`Captcha Failed`)
 .setDescription(`**${member.displayName}** has failed captcha`);
     const captcha = await createCaptcha();
