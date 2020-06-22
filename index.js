@@ -5,23 +5,16 @@ const createCaptcha = require('./captcha');
 //fs
 const fs = require('fs');
 
-//embeds
-///captcha failed verify
-const captchaFailEmbed = new Discord.MessageEmbed()
-.setThumbnail(message.author.avatar)
-.setTitle(`Captcha Failed`)
-.setDescription(`**${message.author.displayName}** has failed captcha`);
 
-///captcha join captcha failed
-const captchaJFailedEmbed = new Discord.MessageEmbed()
-.setThumbnail(member.avatar)
-.setTitle(`Captcha Failed`)
-.setDescription(`**${member.displayName}** has failed captcha`);
 
 
 //capthca
 bot.on('guildMemberAdd', async member => {
     await member.roles.add('717807186431967413');
+    const captchaJFailedEmbed = new Discord.MessageEmbed()
+.setThumbnail(member.avatar)
+.setTitle(`Captcha Failed`)
+.setDescription(`**${member.displayName}** has failed captcha`);
     const captcha = await createCaptcha();
     if(member == null){return};
     try {
@@ -117,10 +110,14 @@ bot.on('message', async message => {
     let args = message.content.substring(PREFIX.length).split(" ");
 
     switch (args[0]) {
-
+        
         //verify
         case 'verify':
             const vm = message.member;
+            const captchaFailEmbed = new Discord.MessageEmbed()
+.setThumbnail(message.author.avatar)
+.setTitle(`Captcha Failed`)
+.setDescription(`**${message.author.displayName}** has failed captcha`);
             const captcha = await createCaptcha();
             if(vm == null){return};
             if(message.channel.id !== '717865343858770002') {
