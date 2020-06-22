@@ -256,6 +256,10 @@ bot.on("guildMemberAdd", (memberj) => {
 
 
 bot.on('message', async message => {
+    if(message.channel.id == '719078243369615361') {
+        message.react('✅')
+        .then(message.react('❌'));
+    }
 //kk summon
     if(message.author.bot) return;
     let msg = message.content.toLocaleLowerCase();
