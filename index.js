@@ -152,6 +152,20 @@ bot.on('message', async message => {
 bot.on('message', message => {
     let args = message.content.substring(PREFIX.length).split(" ");
 
+    switch (args[0]) {
+        case 'giveallrole':
+            if(message.member.hasPermission("MANAGE_ROLES")) {message.react('❌')};
+            let mrole = args[1];
+            let role = message.guild.roles.cache.find(role => role.name === mrole);
+            if(!role) {message.reply(`could not find role ${mrole}`)};
+            message.guild.cache.members.filter(m => !m.user.bot).forEach(member => member.roles.add(role));
+            message.reply(`${mrole}, was added to everyone`);
+
+            break;
+        }
+
+
+
         switch (args[0]) {
         case 'mute':
             if(!message.member.hasPermission("MUTE_MEMBERS")) return message.reply("You cannot run this command");
