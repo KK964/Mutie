@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "KK964",
   "license": "ISC",
@@ -14,6 +16,7 @@
     "discord-anti-spam": "^2.4.1",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
+    "dotenv-flow": "^3.1.0",
     "enmap": "^5.3.1",
     "ffmpeg": "0.0.4",
     "fluent-ffmpeg": "^2.1.2",
@@ -21,6 +24,7 @@
     "jimp": "^0.13.0",
     "keyv": "^4.0.1",
     "ms": "^2.1.2",
+    "nodemon": "^2.0.4",
     "opusscript": "0.0.7",
     "request": "^2.88.2",
     "ytdl-core": "^2.1.6"

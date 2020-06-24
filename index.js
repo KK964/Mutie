@@ -1,11 +1,14 @@
 require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+require("dotenv-flow").config();
 const createCaptcha = require('./captcha');
 //fs
 const fs = require('fs');
 
-
+const config = {
+    token: process.env.TOKEN
+};
 
 
 //capthca
@@ -315,4 +318,4 @@ bot.on('message', async message => {
     }
 })
 
-bot.login(process.env.token);
+bot.login(config.token);
