@@ -98,7 +98,7 @@ const usersMap = new Map();
 
 bot.on('ready', () => {
     console.log('Mutie is now active :D');
-    bot.user.setActivity(`Eating the souls of the homophobic`)
+    bot.user.setActivity(`the homophobic like a damn fiddle`)
 })
 
 
