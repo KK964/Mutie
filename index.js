@@ -5,7 +5,7 @@ require("dotenv-flow").config();
 const createCaptcha = require('./captcha');
 //fs
 const fs = require('fs');
-const bconfig = require('./bconfig.json');
+
 const config = {
     token: process.env.TOKEN
 };
