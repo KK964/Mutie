@@ -120,11 +120,11 @@ bot.on('message', async message => {
         //verify
         case 'verify':
             const vm = message.member;
-            const captchaFailEmbed = new Discord.MessageEmbed()
+            const vcaptchaFailEmbed = new Discord.MessageEmbed()
         .setColor(`#A62019`)
         .setDescription(`**${vm}** has failed captcha`)
         .setThumbnail(message.author.avatarURL);
-            const captchaCompleteEmbed = new Discord.MessageEmbed()
+            const vcaptchaCompleteEmbed = new Discord.MessageEmbed()
         .setColor(`#00D166`)
         .setDescription(`**${vm}**, has completed captcha.`)
         .setThumbnail(message.author.avatarURL);
@@ -155,7 +155,7 @@ bot.on('message', async message => {
                     if(response) {
                         await msg.channel.send('You have verified yourself! Go get your roles in **#role-colors**! :D');
                         await vm.roles.remove('717807186431967413');
-                        bot.channels.cache.get(`717807253519990982`).send(captchaSuccessEmbed);
+                        bot.channels.cache.get(`717807253519990982`).send(vcaptchaSuccessEmbed);
                         message.delete();
                     }
                 }
@@ -170,7 +170,7 @@ bot.on('message', async message => {
                 }
             }
             catch(err) {
-                bot.channels.cache.get(`717807253519990982`).send(captchaFailEmbed)
+                bot.channels.cache.get(`717807253519990982`).send(vcaptchaFailEmbed)
                 console.log(err);
             }
         break};
