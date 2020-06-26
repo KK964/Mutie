@@ -19,7 +19,8 @@ bot.on('guildMemberAdd', async member => {
 .setDescription(`**${member.displayName}** has failed captcha`);
 const captchaSuccessEmbed = new Discord.MessageEmbed()
 .setColor(`#29ac4c`)
-.setDescription(`**${vm.displayName}** has passed captcha`);
+.setDescription(`**${member.displayName}** has passed captcha`);
+
     const captcha = await createCaptcha();
     if(member == null){return};
     try {
@@ -120,11 +121,13 @@ bot.on('message', async message => {
         case 'verify':
             const vm = message.member;
             const captchaFailEmbed = new Discord.MessageEmbed()
-            .setColor(`#A62019`)
-            .setDescription(`**${vm.displayName}** has failed captcha`);
-            const captchaSuccessEmbed = new Discord.MessageEmbed()
-            .setColor(`#29ac4c`)
-            .setDescription(`**${vm.displayName}** has passed captcha`);
+        .setColor(`#A62019`)
+        .setDescription(`**${vm}** has failed captcha`)
+        .setThumbnail(message.author.avatarURL);
+            const captchaCompleteEmbed = new Discord.MessageEmbed()
+        .setColor(`#00D166`)
+        .setDescription(`**${vm}**, has completed captcha.`)
+        .setThumbnail(message.author.avatarURL);
             const captcha = await createCaptcha();
             if(vm == null){return};
             if(message.channel.id !== '717865343858770002') {
