@@ -5,7 +5,7 @@ require("dotenv-flow").config();
 const createCaptcha = require('./captcha');
 //fs
 const fs = require('fs');
-
+const bconfig = require('./bconfig.json');
 const config = {
     token: process.env.TOKEN
 };
@@ -17,6 +17,9 @@ bot.on('guildMemberAdd', async member => {
     const captchaJFailedEmbed = new Discord.MessageEmbed()
 .setColor(`#A62019`)
 .setDescription(`**${member.displayName}** has failed captcha`);
+const captchaSuccessEmbed = new Discord.MessageEmbed()
+.setColor(`#29ac4c`)
+.setDescription(`**${vm.displayName}** has passed captcha`);
     const captcha = await createCaptcha();
     if(member == null){return};
     try {
@@ -37,7 +40,8 @@ bot.on('guildMemberAdd', async member => {
             };
             const response = await msg.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time']});
             if(response) {
-                await msg.channel.send('You have verified yourself!');
+                await msg.channel.send('You have verified yourself! Go get your roles in **#role-colors**! :D');
+                bot.channels.cache.get(`717807253519990982`).send(captchaSuccessEmbed)
                 await member.roles.remove('717807186431967413');
 
             }
@@ -119,6 +123,9 @@ bot.on('message', async message => {
             const captchaFailEmbed = new Discord.MessageEmbed()
             .setColor(`#A62019`)
             .setDescription(`**${vm.displayName}** has failed captcha`);
+            const captchaSuccessEmbed = new Discord.MessageEmbed()
+            .setColor(`#29ac4c`)
+            .setDescription(`**${vm.displayName}** has passed captcha`);
             const captcha = await createCaptcha();
             if(vm == null){return};
             if(message.channel.id !== '717865343858770002') {
@@ -144,7 +151,8 @@ bot.on('message', async message => {
                     };
                     const response = await msg.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time']});
                     if(response) {
-                        await msg.channel.send('You have verified yourself!');
+                        await msg.channel.send('You have verified yourself! Go get your roles in **#role-colors**! :D');
+                        bot.channels.cache.get(`717807253519990982`).send(captchaSuccessEmbed)
                         await vm.roles.remove('717807186431967413');
                         message.delete();
                     }
