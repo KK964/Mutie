@@ -41,7 +41,7 @@ const captchaSuccessEmbed = new Discord.MessageEmbed()
             const response = await msg.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time']});
             if(response) {
                 await msg.channel.send('You have verified yourself! Go get your roles in **#role-colors**! :D');
-                bot.channels.cache.get(`717807253519990982`).send(captchaSuccessEmbed)
+                bot.channels.cache.get(`717807253519990982`).send(captchaSuccessEmbed);
                 await member.roles.remove('717807186431967413');
 
             }
@@ -152,7 +152,7 @@ bot.on('message', async message => {
                     const response = await msg.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time']});
                     if(response) {
                         await msg.channel.send('You have verified yourself! Go get your roles in **#role-colors**! :D');
-                        bot.channels.cache.get(`717807253519990982`).send(captchaSuccessEmbed)
+                        bot.channels.cache.get(`717807253519990982`).send(captchaSuccessEmbed);
                         await vm.roles.remove('717807186431967413');
                         message.delete();
                     }
