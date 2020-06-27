@@ -14,12 +14,6 @@ const config = {
 //capthca
 bot.on('guildMemberAdd', async member => {
     await member.roles.add('717807186431967413');
-    const captchaJFailedEmbed = new Discord.MessageEmbed()
-.setColor(`#A62019`)
-.setDescription(`**${member.displayName}** has failed captcha`);
-const captchaSuccessEmbed = new Discord.MessageEmbed()
-.setColor(`#29ac4c`)
-.setDescription(`**${member.displayName}** has passed captcha`);
 
     const captcha = await createCaptcha();
     if(member == null){return};
@@ -43,7 +37,7 @@ const captchaSuccessEmbed = new Discord.MessageEmbed()
             if(response) {
                 await msg.channel.send('You have verified yourself! Go get your roles in **#role-colors**! :D');
                 await member.roles.remove('717807186431967413');
-                bot.channels.cache.get(`717807253519990982`).send(captchaSuccessEmbed);
+                bot.channels.cache.get(`717807253519990982`).send(`**${member.displayName}** has passed captcha`);
             }
         }
         catch(err) {
@@ -56,7 +50,7 @@ const captchaSuccessEmbed = new Discord.MessageEmbed()
         }
     }
     catch(err) {
-        bot.channels.cache.get(`717807253519990982`).send(captchaJFailedEmbed)
+        bot.channels.cache.get(`717807253519990982`).send(`**${member.displayName}** has failed captcha.`)
         console.log(err);
     }
 });
@@ -120,20 +114,13 @@ bot.on('message', async message => {
         //verify
         case 'verify':
             const vm = message.member;
-            const vcaptchaFailEmbed = new Discord.MessageEmbed()
-        .setColor(`#A62019`)
-        .setDescription(`**${vm}** has failed captcha`)
-        .setThumbnail(message.author.avatarURL);
-            const vcaptchaCompleteEmbed = new Discord.MessageEmbed()
-        .setColor(`#00D166`)
-        .setDescription(`**${vm}**, has completed captcha.`)
-        .setThumbnail(message.author.avatarURL);
             const captcha = await createCaptcha();
             if(vm == null){return};
             if(message.channel.id !== '717865343858770002') {
                 message.react('❌')
                 return;
             };
+            bot.channels.cache.get(`717807253519990982`).send(`**${vm}**, has run verify command.`);
             try {
                 message.react('✅')
                 const msg = await vm.send('You have 60 seconds to solve the captcha', {
@@ -155,7 +142,7 @@ bot.on('message', async message => {
                     if(response) {
                         await msg.channel.send('You have verified yourself! Go get your roles in **#role-colors**! :D');
                         await vm.roles.remove('717807186431967413');
-                        bot.channels.cache.get(`717807253519990982`).send(vcaptchaSuccessEmbed);
+                        bot.channels.cache.get(`717807253519990982`).send(`**${vm}**, has completed captcha.`);
                         message.delete();
                     }
                 }
@@ -170,7 +157,7 @@ bot.on('message', async message => {
                 }
             }
             catch(err) {
-                bot.channels.cache.get(`717807253519990982`).send(vcaptchaFailEmbed)
+                bot.channels.cache.get(`717807253519990982`).send(`**${vm}** has failed captcha.`)
                 console.log(err);
             }
         break};
