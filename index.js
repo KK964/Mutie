@@ -285,7 +285,7 @@ bot.on('message', async message => {
     let sender = message.member;
     for (x = 0; x < kk.length; x++) {
         if (msg.includes(kk[x])){
-            KK964.send(`${sender} says ${msg}.`)
+            KK964.send(`***${sender.displayName}***` + '*says* ->\n\n' + `${msg}`);
         }
     }
     const time = `600000`;
