@@ -276,10 +276,10 @@ bot.on('message', async message => {
     }
 //kk summon
     if(message.author.bot) return;
-    let msg = message.content.toLocaleLowerCase();
+    let msg = message.content;
     let senderm = message.members;
     let KK964 = bot.users.cache.get('426892116258717707')
-    var kk = ["kk"]
+    var kk = ["KK"]
     if(message.author == null){return};
     if(message.webhookID){return};
     let sender = message.member;
