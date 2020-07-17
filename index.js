@@ -275,6 +275,7 @@ bot.on('message', async message => {
         .then(message.react('❌'));
     }
 //kk summon
+//commit arson
     if(message.author.bot) return;
     let msg = message.content;
     let senderm = message.members;
